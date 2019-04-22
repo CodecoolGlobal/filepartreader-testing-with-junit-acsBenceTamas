@@ -8,12 +8,13 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FileWordAnalyzerTest {
-    private static final String TEST_FILE_PATH = "tests/com/codecool/acsbencetamas/utils/simpleTestFile.txt";
+    private static final String SIMPLE_TEST_FILE_PATH = "tests/com/codecool/acsbencetamas/utils/simpleTestFile.txt";
+    private static final String PALINDROME_TEST_FILE_PATH = "tests/com/codecool/acsbencetamas/utils/palindromeTestFile.txt";
 
     @Test
     public void testGettingWordsOrderedAlphabetically() {
         FilePartReader fpr = new FilePartReader();
-        fpr.setup(TEST_FILE_PATH,1,10);
+        fpr.setup(SIMPLE_TEST_FILE_PATH,1,10);
 
         FileWordAnalyzer fwa = new FileWordAnalyzer(fpr);
 
@@ -41,6 +42,22 @@ class FileWordAnalyzerTest {
                             "two"
                         )),
                 fwa.getWordsOrderedAlphabetically());
+    }
+
+    @Test
+    public void testGettingPalindromes() {
+        FilePartReader fpr = new FilePartReader();
+        fpr.setup(PALINDROME_TEST_FILE_PATH,1,3);
+
+        FileWordAnalyzer fwa = new FileWordAnalyzer(fpr);
+
+        assertEquals(new ArrayList<>(
+                Arrays.asList(
+                            "racecar",
+                            "mom",
+                            "dad"
+                        )),
+                fwa.getStringsWhichArePalindromes());
     }
 
 }
