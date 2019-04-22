@@ -60,4 +60,36 @@ class FileWordAnalyzerTest {
                 fwa.getStringsWhichArePalindromes());
     }
 
+    @Test
+    public void testGettingWordsWithSubstrings() {
+        FilePartReader fpr = new FilePartReader();
+        fpr.setup(SIMPLE_TEST_FILE_PATH,1,10);
+
+        FileWordAnalyzer fwa = new FileWordAnalyzer(fpr);
+
+        assertEquals(new ArrayList<>(
+                Arrays.asList(
+                            "seven",
+                            "ten"
+                        )),
+                fwa.getWordsContainingSubstring("en"));
+
+        assertEquals(new ArrayList<>(
+                Arrays.asList(
+                            "line",
+                            "one",
+                            "line",
+                            "line",
+                            "line",
+                            "line",
+                            "line",
+                            "line",
+                            "line",
+                            "line",
+                            "nine",
+                            "line"
+                        )),
+                fwa.getWordsContainingSubstring("ne"));
+    }
+
 }

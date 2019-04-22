@@ -18,10 +18,19 @@ public class FileWordAnalyzer {
         return list;
     }
 
-    public List<String> getStringsWhichArePalindromes () {
+    public List<String> getStringsWhichArePalindromes() {
         List<String> list = getWordListFromFile();
-        list.removeIf((word) -> !isPalindrome(word));
-        return list;
+        return list.stream()
+                .filter(FileWordAnalyzer::isPalindrome)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getWordsContainingSubstring(String subString ) {
+        List<String> list = getWordListFromFile();
+        System.out.println(list);
+        return list.stream()
+                .filter((word) -> word.toLowerCase().contains(subString.toLowerCase()))
+                .collect(Collectors.toList());
     }
 
     private List<String> getWordListFromFile() {
