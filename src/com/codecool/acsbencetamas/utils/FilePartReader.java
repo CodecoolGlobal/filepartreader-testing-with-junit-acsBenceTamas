@@ -2,6 +2,8 @@ package com.codecool.acsbencetamas.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class FilePartReader {
@@ -27,12 +29,12 @@ public class FilePartReader {
         File file = new File(filePath);
         Scanner in = new Scanner(file);
 
-        StringBuilder sb = new StringBuilder();
+        List<String> lines = new ArrayList<>();
 
         while (in.hasNextLine()) {
-            sb.append(in.nextLine());
+            lines.add(in.nextLine());
         }
-        return sb.toString();
+        return String.join("\n",lines);
     }
 
     public String readLines() throws FileNotFoundException {
@@ -40,21 +42,23 @@ public class FilePartReader {
         File file = new File(filePath);
         Scanner in = new Scanner(file);
 
-        StringBuilder sb = new StringBuilder();
+        List<String> lines = new ArrayList<>();
         while (currentLine < fromLine) {
             if (in.hasNextLine()) {
                 in.nextLine();
+                currentLine ++;
             } else {
                 break;
             }
         }
         while (currentLine <= toLine) {
             if (in.hasNextLine()) {
-                sb.append(in.nextLine());
+                lines.add(in.nextLine());
+                currentLine ++;
             } else {
                 break;
             }
         }
-        return sb.toString();
+        return String.join("\n",lines);
     }
 }

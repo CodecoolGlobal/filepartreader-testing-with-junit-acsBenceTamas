@@ -40,8 +40,7 @@ class FilePartReaderTest {
 
         fpr.setup(TEST_FILE_PATH,1,1);
         try {
-            assertEquals(fpr.read(),
-                    "line one\n" +
+            assertEquals("line one\n" +
                             "line two\n" +
                             "line three\n" +
                             "line four\n" +
@@ -50,7 +49,9 @@ class FilePartReaderTest {
                             "line seven\n" +
                             "line eight\n" +
                             "line nine\n" +
-                            "line ten");
+                            "line ten",
+                    fpr.read()
+                    );
         } catch (FileNotFoundException e) {
             fail(e.getMessage());
         }
@@ -62,8 +63,8 @@ class FilePartReaderTest {
 
         fpr.setup(TEST_FILE_PATH,1,1);
         try {
-            assertEquals(fpr.read(),
-                    "line one");
+            assertEquals("line one",
+                    fpr.readLines());
         } catch (FileNotFoundException e) {
             fail(e.getMessage());
         }
@@ -75,8 +76,8 @@ class FilePartReaderTest {
 
         fpr.setup(TEST_FILE_PATH,5,5);
         try {
-            assertEquals(fpr.read(),
-                    "line five");
+            assertEquals("line five",
+                    fpr.readLines());
         } catch (FileNotFoundException e) {
             fail(e.getMessage());
         }
@@ -88,11 +89,13 @@ class FilePartReaderTest {
 
         fpr.setup(TEST_FILE_PATH,2,5);
         try {
-            assertEquals(fpr.read(),
+            assertEquals(
                     "line two\n" +
                             "line three\n" +
                             "line four\n" +
-                            "line five\n");
+                            "line five",
+                    fpr.readLines()
+                    );
         } catch (FileNotFoundException e) {
             fail(e.getMessage());
         }
@@ -104,10 +107,12 @@ class FilePartReaderTest {
 
         fpr.setup(TEST_FILE_PATH,8,15);
         try {
-            assertEquals(fpr.read(),
+            assertEquals(
                     "line eight\n" +
                             "line nine\n" +
-                            "line ten\n");
+                            "line ten",
+                    fpr.readLines()
+                    );
         } catch (FileNotFoundException e) {
             fail(e.getMessage());
         }
@@ -119,8 +124,8 @@ class FilePartReaderTest {
 
         fpr.setup(TEST_FILE_PATH,11,11);
         try {
-            assertEquals(fpr.read(),
-                    "");
+            assertEquals("",
+                    fpr.readLines());
         } catch (FileNotFoundException e) {
             fail(e.getMessage());
         }
