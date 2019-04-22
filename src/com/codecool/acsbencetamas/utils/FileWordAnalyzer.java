@@ -27,7 +27,6 @@ public class FileWordAnalyzer {
 
     public List<String> getWordsContainingSubstring(String subString ) {
         List<String> list = getWordListFromFile();
-        System.out.println(list);
         return list.stream()
                 .filter((word) -> word.toLowerCase().contains(subString.toLowerCase()))
                 .collect(Collectors.toList());
